@@ -1,0 +1,9 @@
+[project]
+name = "python-spacecraft-dynamics"
+version = "0.1.0"
+description = "Python examples for learning spacecraft dynamics and attitude control"
+requires-python = ">=3.13"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.3",
+]
