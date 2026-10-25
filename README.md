@@ -13,12 +13,15 @@ JAXA『人工衛星の力学と制御：宇宙機ダイナミクス・姿勢制�
 学習記事：[人工衛星の力学と制御に必要な数学の基礎：座標系・ベクトル](https://watlab-blog.com/2026/10/11/sapacecraft-dynamics-math/)
 
 現在のサンプルが扱う内容を、原本PDFの節番号に対応させて整理しています。
+射影とダイアディックのサンプルは、理解を補う追加例として掲載しています。
 コードは[chapter_01](chapter_01/)にあります。
 
 | 原本PDFの節 | 学習内容・コードで確認できること | 対応コード |
 | --- | --- | --- |
 | 1.1 座標系と座標 | 右手系の直交座標系、原点O、点Pとその座標を図で確認する。3次元の座標系を2次元の図に投影して描画する。 | [01_coordinate_system.py](chapter_01/01_coordinate_system.py) |
 | 1.2 ベクトル | スカラー三重積と、その絶対値で表される平行六面体の体積を計算する。3次元の図と数値出力で、底面積×高さとの対応を確認する。 | [02_scalar_triple_product.py](chapter_01/02_scalar_triple_product.py) |
+| —（補足例：ベクトルの射影） | 入力ベクトル `v = (3, 4)` と、x軸への射影ベクトル `v_x = (3, 0)` を2次元の図に描く。入力ベクトルの終点からx軸への垂線と射影点を確認する。 | [03_projection_example.py](chapter_01/03_projection_example.py) |
+| —（補足例：ダイアディック） | 標準基底ベクトルのダイアドを `np.outer` で求め、係数付きで足し合わせてダイアディックの行列表現を構成する。入力ベクトルへの作用 `w = D @ v` を計算し、各入力成分の寄与ベクトルの和が出力ベクトルになることを3次元の図と数値出力で確認する。 | [04_dyadic.py](chapter_01/04_dyadic.py) |
 
 ## 学習の方針
 
@@ -59,10 +62,17 @@ uv run --locked python chapter_01/01_coordinate_system.py
 
 # 1.2 ベクトル：スカラー三重積と平行六面体の体積
 uv run --locked python chapter_01/02_scalar_triple_product.py
+
+# 補足例：ベクトルのx軸への射影
+uv run --locked python chapter_01/03_projection_example.py
+
+# 補足例：ダイアディックの作用と各入力成分の寄与
+uv run --locked python chapter_01/04_dyadic.py
 ```
 
-どちらもMatplotlibのウィンドウに図を表示します。
+いずれもMatplotlibのウィンドウに図を表示します。
 `02_scalar_triple_product.py`は、ウィンドウを閉じた後に計算結果をターミナルにも出力します。
+`04_dyadic.py`は、図を表示する前に入力ベクトル、出力ベクトル、各寄与ベクトルをターミナルにも出力します。
 
 将来のパッケージ化に備えてプロジェクト情報を管理します。
 章ごとのサンプルを育てながら、共通ライブラリやビルド設定は必要になった段階で整備します。
